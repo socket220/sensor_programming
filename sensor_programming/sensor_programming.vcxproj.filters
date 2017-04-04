@@ -35,18 +35,27 @@
     <Filter Include="Header files\Device-specific files\HAL">
       <UniqueIdentifier>{b7c8b597-a446-4312-9b50-7039e311a694}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\MahonyFilter">
+      <UniqueIdentifier>{d8188f56-d60f-45d5-a97c-32da32a0647b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\MahonyFilter">
+      <UniqueIdentifier>{52e667fb-946a-4c07-bdf4-d06f14641b8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\I2C">
+      <UniqueIdentifier>{9898d385-9ff6-4296-a6c4-6e41ab14367e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\I2C">
+      <UniqueIdentifier>{cf3f7a34-8493-401e-a713-fef5f1270d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\USBDevice">
+      <UniqueIdentifier>{a72df47e-1367-4c50-8775-4e6c881e1e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\USBDevice">
+      <UniqueIdentifier>{e0430d33-c5ad-4bb6-90a9-313dbacf0ed6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sensor_programming.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="usbd_cdc_if.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="usbd_conf.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="usbd_desc.c">
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="system_stm32f4xx.c">
@@ -268,17 +277,38 @@
     <ClCompile Include="..\..\..\..\..\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F4xxxx\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c">
       <Filter>Source files\Device-specific files\HAL</Filter>
     </ClCompile>
+    <ClCompile Include="tm_stm32_delay.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="tm_stm32_mpu9250.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="tm_stm32_rtc.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="tm_stm32_gpio.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="tm_stm32_rcc.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="MahonyAHRS.cpp">
+      <Filter>Source files\MahonyFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="tm_stm32_i2c.c">
+      <Filter>Source files\I2C</Filter>
+    </ClCompile>
+    <ClCompile Include="usbd_cdc_if.c">
+      <Filter>Source files\USBDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="usbd_conf.c">
+      <Filter>Source files\USBDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="usbd_desc.c">
+      <Filter>Source files\USBDevice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="usbd_cdc_if.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="usbd_conf.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="usbd_desc.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="stm32f4xx_hal_conf.h">
       <Filter>Header files</Filter>
     </ClInclude>
@@ -563,6 +593,45 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F4xxxx\CMSIS_HAL\RTOS\Template\cmsis_os.h">
       <Filter>Header files\Device-specific files\HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="stm32fxxx_hal.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="tm_stm32_delay.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="tm_stm32_mpu9250.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="tm_stm32_rtc.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="attributes.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="tm_stm32_gpio.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="tm_stm32_rcc.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="MahonyAHRS.h">
+      <Filter>Header files\MahonyFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="tm_stm32_i2c.h">
+      <Filter>Header files\I2C</Filter>
+    </ClInclude>
+    <ClInclude Include="usbd_cdc_if.h">
+      <Filter>Header files\USBDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="usbd_conf.h">
+      <Filter>Header files\USBDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="usbd_desc.h">
+      <Filter>Header files\USBDevice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

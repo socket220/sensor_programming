@@ -1,11 +1,17 @@
+// pins for i2c:SCL SDA
+//				PB8 PB9
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+	#include <sys/stat.h>
 	#include <usbd_core.h>
 	#include <usbd_cdc.h>
 	#include "usbd_cdc_if.h"
 	#include <usbd_desc.h>
+	
+	#include "tm_stm32_mpu9250.h"
 
 	USBD_HandleTypeDef USBD_Device;
 	void SysTick_Handler(void);
@@ -13,12 +19,17 @@ extern "C"
 	void OTG_HS_IRQHandler(void);
 	extern PCD_HandleTypeDef hpcd;
 	
-	int VCP_read(void *pBuffer, int size);
-	int VCP_write(const void *pBuffer, int size);
+	//int VCP_read(void *pBuffer, int size);
+	//int VCP_write(const void *pBuffer, int size);
+	uint8_t CDC_Receive(uint8_t* Buf, int Len);
+	uint8_t CDC_Transmit(void *Buf, int Len);
 	extern char g_VCPInitialized;
 	
-#ifdef __cplusplus
+	TM_MPU9250_t MPU9250; // sensor structure
+	
 }
+#ifdef __cplusplus
+
 #endif
 
 static void SystemClock_Config(void)
@@ -53,6 +64,7 @@ static void SystemClock_Config(void)
 }
 
 
+
 void SysTick_Handler(void)
 {
 	HAL_IncTick();
@@ -84,6 +96,7 @@ void OTG_HS_IRQHandler(void)
 
 int main(void)
 {
+	
 	HAL_Init();
 	SystemClock_Config();
 	USBD_Init(&USBD_Device, &VCP_Desc, 0);
@@ -91,14 +104,23 @@ int main(void)
 	USBD_RegisterClass(&USBD_Device, &USBD_CDC);
 	USBD_CDC_RegisterInterface(&USBD_Device, &USBD_CDC_sensor_programming_fops);
 	USBD_Start(&USBD_Device);
+	
+	TM_MPU9250_Init(&MPU9250, TM_MPU9250_Device_0); //zbs
 
 	char byte;
+	uint8_t count = 0;
+	char str[30];
 	for (;;)
 	{
-		if (VCP_read(&byte, 1) != 1)
-			continue;
-		VCP_write("\r\nYou typed ", 12);
-		VCP_write(&byte, 1);
-		VCP_write("\r\n", 2);
+		
+		TM_MPU9250_ReadAcce(&MPU9250);
+		TM_MPU9250_ReadGyro(&MPU9250);
+		TM_MPU9250_ReadMag(&MPU9250);
+		
+		count  = sprintf(str, "%.3f %.3f %.3f | %.3f %.3f %.3f | %.4i %.4i %.4i \r\n", MPU9250.Gx, MPU9250.Gy, MPU9250.Gz,
+	MPU9250.Gx, MPU9250.Gy, MPU9250.Gz, MPU9250.Mx_Raw, MPU9250.My_Raw, MPU9250.Mz_Raw);
+		CDC_Transmit(&str, count);
+		HAL_Delay(100);
+	
 	}
 }
